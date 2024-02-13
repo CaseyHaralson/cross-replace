@@ -14,7 +14,7 @@
   },
   "author": "Casey Haralson",
   "bin": {
-    "cross-args": "./entry-file.js"
+    "cross-replace": "./entry-file.js"
   },
   "main": "dist/index.js",
   "files": [
@@ -31,7 +31,7 @@
     "test": "jest --config jest.config.unit.ts.js",
     "example": "cross-replace node -e \"console.log('$npm_config_test1 and %npm_config_test2% and $npm_config_test3 and %npm_config_test4%')\"",
     "example:multiple-of-same": "cross-replace node -e \"console.log('$npm_config_test1 and %npm_config_test1% and $npm_config_test1 and %npm_config_test1%')\"",
-    "example:with-special-chars": "cross-replace node -e \"console.log('${npm_config_Notepad++} and %npm_config_Notepad++%')\"",
+    "example:with-special-chars": "cross-replace node -e \"console.log('$npm_config_Notepad++ and %npm_config_Notepad++%')\"",
     "example:replacement-not-found": "cross-replace node -e \"console.log('$npm_config_notfound and %npm_config_notfound%')\"",
     "example:empty-command": "cross-replace"
   },

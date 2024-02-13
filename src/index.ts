@@ -12,7 +12,6 @@ function fillCommandWithValues(args: string[]) {
       .sort((x, y) => y.length - x.length) // sort by descending length to prevent partial replacement
       .forEach((key) => {
         const sKey = sanitizeKeyForRegex(key);
-        console.log(sKey);
         const regex = new RegExp(`\\$${sKey}|\${${sKey}}|%${sKey}%`, 'ig');
         arg = arg.replace(regex, process.env[key]);
       });
