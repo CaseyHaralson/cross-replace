@@ -14,7 +14,7 @@
   },
   "author": "Casey Haralson",
   "bin": {
-    "cross-replace": "./entry-file.js"
+    "cross-replace": "entry-file.js"
   },
   "main": "dist/index.js",
   "files": [
