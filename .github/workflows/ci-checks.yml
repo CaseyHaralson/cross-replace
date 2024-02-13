@@ -1,0 +1,79 @@
+name: Continuous Integration Checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+  workflow_call:
+
+jobs:
+  sha-pinned-actions:
+    name: SHA pinned github actions
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "🔧 ensure SHA pinned actions"
+        uses: zgosalvez/github-actions-ensure-sha-pinned-actions@ba37328d4ea95eaf8b3bd6c6cef308f709a5f2ec
+        with:
+          allowlist: |
+            actions/
+
+  unit-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: Unit test application
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    needs: sha-pinned-actions
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: "📦 install dependencies"
+        uses: bahmutov/npm-install@5653d39101a041a30cc58572d6bd566b90a6de20
+      
+      - name: "📦 build project"
+        run: npm run build
+
+      - name: "🔧 link command"
+        run: npm link
+
+      - name: "🔍 run unit tests"
+        run: npm test
+
+  style-and-lint:
+    name: Code standards
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: sha-pinned-actions
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: "📦 install dependencies"
+        uses: bahmutov/npm-install@5653d39101a041a30cc58572d6bd566b90a6de20
+
+      - name: "🔍 prettier check code"
+        run: npm run prettier:check --if-present
+
+      - name: "🔍 lint code"
+        if: success() || failure()
+        run: npm run lint --if-present

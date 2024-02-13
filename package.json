@@ -1,0 +1,52 @@
+{
+  "name": "cross-replace",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/CaseyHaralson/cross-replace#readme",
+  "bugs": {
+    "url": "https://github.com/CaseyHaralson/cross-replace/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaseyHaralson/cross-replace.git"
+  },
+  "author": "Casey Haralson",
+  "bin": {
+    "cross-replace": "./entry-file.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npx rimraf ./dist && tsc -b",
+    "prettier": "npx prettier --write .",
+    "prettier:check": "npx prettier --check .",
+    "lint": "npx eslint . --report-unused-disable-directives --max-warnings=0",
+    "proj-publish": "npm run build && npm publish",
+    "proj-publish:dry-run": "npm run build && npm publish --dry-run",
+    "list:global": "npm list -g --depth=0",
+    "test": "jest --config jest.config.unit.ts.js",
+    "example": "cross-replace node -e \"console.log('$npm_config_test1 and %npm_config_test2% and $npm_config_test3 and %npm_config_test4%')\"",
+    "example:multiple-of-same": "cross-replace node -e \"console.log('$npm_config_test1 and %npm_config_test1% and $npm_config_test1 and %npm_config_test1%')\"",
+    "example:with-special-chars": "cross-replace node -e \"console.log('$npm_config_Notepad++ and %npm_config_Notepad++%')\"",
+    "example:replacement-not-found": "cross-replace node -e \"console.log('$npm_config_notfound and %npm_config_notfound%')\"",
+    "example:empty-command": "cross-replace"
+  },
+  "devDependencies": {
+    "@types/cross-spawn": "^6.0.6",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.17",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "rimraf": "^5.0.5",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "cross-spawn": "^7.0.3"
+  }
+}
