@@ -36,10 +36,10 @@ jobs:
       - name: "🔧 setup node"
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: "📦 install dependencies"
-        uses: bahmutov/npm-install@1a235c31658a322a3b024444759650ee6345c26d
+        uses: bahmutov/npm-install@5653d39101a041a30cc58572d6bd566b90a6de20
 
       - name: "🔍 run unit tests"
         run: npm test
@@ -56,10 +56,10 @@ jobs:
       - name: "🔧 setup node"
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: "📦 install dependencies"
-        uses: bahmutov/npm-install@1a235c31658a322a3b024444759650ee6345c26d
+        uses: bahmutov/npm-install@5653d39101a041a30cc58572d6bd566b90a6de20
 
       - name: "🔍 prettier check code"
         run: npm run prettier:check --if-present
