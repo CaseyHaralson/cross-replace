@@ -44,6 +44,12 @@ jobs:
 
       - name: "📦 install dependencies"
         uses: bahmutov/npm-install@5653d39101a041a30cc58572d6bd566b90a6de20
+      
+      - name: "📦 build project"
+        run: npm run build
+
+      - name: "🔧 link command"
+        run: npm link
 
       - name: "🔍 run unit tests"
         run: npm test
