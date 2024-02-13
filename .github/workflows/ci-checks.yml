@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: "☁️ checkout repository"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: "🔧 ensure SHA pinned actions"
         uses: zgosalvez/github-actions-ensure-sha-pinned-actions@ba37328d4ea95eaf8b3bd6c6cef308f709a5f2ec
@@ -31,7 +31,7 @@ jobs:
     needs: sha-pinned-actions
     steps:
       - name: "☁️ checkout repository"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: "🔧 setup node"
         uses: actions/setup-node@v3
@@ -51,7 +51,7 @@ jobs:
     needs: sha-pinned-actions
     steps:
       - name: "☁️ checkout repository"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: "🔧 setup node"
         uses: actions/setup-node@v3
