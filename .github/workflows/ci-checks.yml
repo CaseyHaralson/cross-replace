@@ -25,8 +25,12 @@ jobs:
             actions/
 
   unit-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     name: Unit test application
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     needs: sha-pinned-actions
     steps:
