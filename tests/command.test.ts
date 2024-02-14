@@ -42,6 +42,15 @@ test('example:replacement-not-found output', async () => {
   expect(cleanedOutput).toBe(expected);
 });
 
+test('example:dollar-brackets output', async () => {
+  const expected = 'worked1 and worked2 and worked3';
+  const output = execSync(
+    'npm run example:dollar-brackets --test1=worked1 --test2=worked2 --test3=worked3'
+  );
+  const cleanedOutput = cleanOutput(output.toString());
+  expect(cleanedOutput).toBe(expected);
+});
+
 test('example:empty-command output', async () => {
   const expected = '';
   const output = execSync('npm run example:empty-command');
