@@ -1,8 +1,13 @@
 {
   "name": "cross-replace",
   "version": "0.1.0",
-  "description": "",
-  "keywords": [],
+  "description": "Provides a consistent way to reference environment variables in npm scripts across all platforms.",
+  "keywords": [
+    "npm-scripts",
+    "environment variables", 
+    "cross platform", 
+    "cross-var"
+  ],
   "homepage": "https://github.com/CaseyHaralson/cross-replace#readme",
   "bugs": {
     "url": "https://github.com/CaseyHaralson/cross-replace/issues"
