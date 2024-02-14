@@ -3,10 +3,10 @@ import {exit} from 'process';
 import spawn from 'cross-spawn';
 
 function sanitizeKeyForRegex(key: string) {
-  // return key.replace(/([.^$*+?{}()|\[\]\\\/\-&])/g, '\\$1');
   return key.replace(/([.^$*+?{}()|[\]\\/\-&])/g, '\\$1');
 }
 function fillCommandWithValues(args: string[]) {
+  // update args with environment variables
   let updatedArgs = args.map((arg) => {
     Object.keys(process.env)
       .sort((x, y) => y.length - x.length) // sort by descending length to prevent partial replacement
@@ -29,6 +29,7 @@ function fillCommandWithValues(args: string[]) {
   return updatedArgs;
 }
 
+// main processing
 let args = process.argv.slice(2);
 if (args.length === 1) {
   const [command] = fillCommandWithValues(args);
