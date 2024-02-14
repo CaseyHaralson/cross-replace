@@ -18,7 +18,7 @@ test('example:multiple-of-same output', async () => {
 });
 
 // each OS handles special chars differently...
-// machos: ++ and worked1
+// macos: ++ and worked1
 // ubuntu: ++ and %npm_config_Notepad++%
 // windows: worked1 and worked1
 // test('example:with-special-chars output', async () => {
