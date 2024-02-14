@@ -36,7 +36,7 @@ test('example:with-special-chars output', async () => {
 });
 
 test('example:replacement-not-found output', async () => {
-  const expected = '$npm_config_notfound and %npm_config_notfound%';
+  const expected = ' and  and  and ';
   const output = execSync('npm run example:replacement-not-found');
   const cleanedOutput = cleanOutput(output.toString());
   expect(cleanedOutput).toBe(expected);

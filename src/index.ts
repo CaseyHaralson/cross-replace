@@ -7,7 +7,7 @@ function sanitizeKeyForRegex(key: string) {
   return key.replace(/([.^$*+?{}()|[\]\\/\-&])/g, '\\$1');
 }
 function fillCommandWithValues(args: string[]) {
-  return args.map((arg) => {
+  let updatedArgs = args.map((arg) => {
     Object.keys(process.env)
       .sort((x, y) => y.length - x.length) // sort by descending length to prevent partial replacement
       .forEach((key) => {
@@ -17,6 +17,16 @@ function fillCommandWithValues(args: string[]) {
       });
     return arg;
   });
+
+  // remove undefined values
+  updatedArgs = updatedArgs.map((arg) => {
+    const regex = new RegExp(/\$(\w+)|%(\w+)%/, 'ig');
+    const name = arg.split(regex) !== null ? arg.split(regex)[1] : undefined;
+    const value = process.env[name] === undefined ? '' : process.env[name];
+    return arg.replace(regex, value);
+  });
+
+  return updatedArgs;
 }
 
 let args = process.argv.slice(2);
