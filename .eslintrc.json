@@ -13,7 +13,7 @@
   "plugins": ["@typescript-eslint"],
   "ignorePatterns": ["node_modules", "dist"],
   "rules": {
-    "@typescript-eslint/no-var-requires": 0
+    "@typescript-eslint/no-require-imports": 0
   },
   "globals": {
     "require": true
